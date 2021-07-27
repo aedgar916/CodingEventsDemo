@@ -3,24 +3,33 @@
 <p>
     <a asp-controller="Events" asp-action="Add">Add Event</a>
 </p>
+<p>
+    <a asp-controller="Events" asp-action="Delete">Delete Events</a>
+</p>
 
 @if (ViewBag.events.Count == 0)
 {
     <p>No events yet!</p>
 }
-
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
+else
+{
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Edit?</th>
+        </tr>
     
-    @foreach (KeyValuePair<string,string> meeting in ViewBag.events)
+    @foreach (var meeting in ViewBag.events)
     {
         <tr>
-            <td>@meeting.Key</td>
-            <td>@meeting.Value</td>
+            <td>@meeting.Id</td>
+            <td>@meeting.Name</td>
+            <td>@meeting.Description</td>
+            <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a></td>
         </tr>
     }
     
-</table>
+    </table>
+}
