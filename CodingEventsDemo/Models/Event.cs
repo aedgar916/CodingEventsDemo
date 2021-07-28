@@ -5,6 +5,11 @@ namespace CodingEventsDemo.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Location { get; set; }
+        public int NumberOfAttendees { get; set; }
+        public string ContactEmail { get; set; }
+        public bool NeedToRegister { get; set; }
+        //public bool IsTrue { get { return true; } }
 
         public int Id { get; }
         private static int nextId = 1;
@@ -15,10 +20,15 @@ namespace CodingEventsDemo.Models
             nextId++;
         }
 
-        public Event(string name, string description) : this()
+        public Event(string name, string description, string location, int numberOfAttendees, string contactEmail, bool needToRegister) : this()
         {
             Name = name;
             Description = description;
+            Location = location;
+            NumberOfAttendees = numberOfAttendees;
+            ContactEmail = contactEmail;
+            NeedToRegister = needToRegister;
+            
         }
 
 

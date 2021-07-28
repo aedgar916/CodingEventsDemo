@@ -1,14 +1,44 @@
-﻿<h1>Add Event</h1>
+﻿@using CodingEventsDemo.ViewModels;
 
-<form method="post">
+@model AddEventViewModel;
+
+<h1>Add Event</h1>
+
+<form asp-controller="Events" asp-action="Add" method="post">
     <div class="form-group">
-        <label for="name">Name</label>
-        <input name="name" type="text" />
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
     </div>
 
     <div class="form-group">
-        <label for="description">Description</label>
-        <input name="description" type="text" />
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location">Event Location</label>
+        <input asp-for="Location" />
+        <span asp-validation-for="Location"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NumberOfAttendees">Number of Attendees</label>
+        <input asp-for="NumberOfAttendees" />
+        <span asp-validation-for="NumberOfAttendees"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactEmail">Contact Email</label>
+        <input asp-for="ContactEmail" />
+        <span asp-validation-for="ContactEmail"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NeedToRegister">Registration Required?</label>
+        <input asp-for="NeedToRegister" type="checkbox"/>
+        <span asp-validation-for="NeedToRegister"></span>
     </div>
 
     <div>
