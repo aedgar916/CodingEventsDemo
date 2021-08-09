@@ -21,27 +21,25 @@ else
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Description</th>
+            @*<th>Description</th>
             <th>Event Location</th>
             <th>Number of Attendees</th>
             <th>Category</th>
             <th>Contact Email</th>
-            <th>Registration Required?</th>
-            <th>Edit?</th>
+            <th>Registration Required?</th>*@
         </tr>
     
     @foreach (var meeting in Model)
     {
         <tr>
             <td>@meeting.Id</td>
-            <td>@meeting.Name</td>
-            <td>@meeting.Description</td>
+            <td><a asp-controller="Events" asp-action="Detail" asp-route-id="@meeting.Id">@meeting.Name</a></td>
+            @*<td>@meeting.Description</td>
             <td>@meeting.Location</td>
             <td>@meeting.NumberOfAttendees</td>
             <td>@meeting.Category.Name</td>
             <td>@meeting.ContactEmail</td>
-            <td>@meeting.NeedToRegister</td>
-            <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@meeting.Id">Edit Event</a></td>
+            <td>@meeting.NeedToRegister</td>*@
         </tr>
     }
     

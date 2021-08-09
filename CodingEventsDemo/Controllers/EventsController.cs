@@ -33,7 +33,7 @@ namespace coding_events_practice.Controllers
 
         public IActionResult Add()
         {
-            List<EventCategory> categories = _context.Category.ToList();
+            List<EventCategory> categories = _context.Categories.ToList();
 
             AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
 
@@ -45,7 +45,7 @@ namespace coding_events_practice.Controllers
         {
             if (ModelState.IsValid)
             {
-                EventCategory theCategory = _context.Category.Find(addEventViewModel.CategoryId);
+                EventCategory theCategory = _context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name,
@@ -91,9 +91,9 @@ namespace coding_events_practice.Controllers
         [Route("/Events/Edit/{eventId}")]
         public IActionResult Edit(int eventId)
         {
-            Event EditEvent = _context.Events.Find(eventId);
-            ViewBag.editEvent = EditEvent;
-            ViewBag.title = $"Edit Event {EditEvent.Name} (id = {EditEvent.Id})";
+            Event editEvent = _context.Events.Find(eventId);
+            ViewBag.editEvent = editEvent;
+            ViewBag.title = $"Edit Event {editEvent.Name} (id = {editEvent.Id})";
             return View();
         }
 
@@ -111,7 +111,22 @@ namespace coding_events_practice.Controllers
 
             _context.SaveChanges();
 
-            return Redirect("/Events");
+            return Redirect("/Events/Detail/" + eventId);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Event theEvent = _context.Events
+                .Include(e => e.Category)
+                .Single(e => e.Id == id);
+
+            List<EventTag> eventTags = _context.EventTags
+                .Where(et => et.EventId == id)
+                .Include(et => et.Tag)
+                .ToList();
+
+            EventDetailViewModel eventDetailViewModel = new EventDetailViewModel(theEvent, eventTags);
+            return View(eventDetailViewModel);
         }
     }
 }

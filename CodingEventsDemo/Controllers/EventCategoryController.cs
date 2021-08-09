@@ -23,7 +23,7 @@ namespace CodingEventsDemo.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<EventCategory> eventCategories = _context.Category.ToList();
+            List<EventCategory> eventCategories = _context.Categories.ToList();
 
             return View(eventCategories);
         }
@@ -46,7 +46,7 @@ namespace CodingEventsDemo.Controllers
                     Name = addEventCategoryViewModel.Name
                 };
 
-                _context.Category.Add(eventCategory);
+                _context.Categories.Add(eventCategory);
                 _context.SaveChanges();
 
                 return Redirect("/EventCategory");
