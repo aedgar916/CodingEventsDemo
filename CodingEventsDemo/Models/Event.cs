@@ -9,18 +9,16 @@ namespace CodingEventsDemo.Models
         public int NumberOfAttendees { get; set; }
         public string ContactEmail { get; set; }
         public bool NeedToRegister { get; set; }
-        //public bool IsTrue { get { return true; } }
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public int Id { get; }
-        private static int nextId = 1;
+        public int Id { get; set; }
 
         public Event()
         {
-            Id = nextId;
-            nextId++;
         }
 
-        public Event(string name, string description, string location, int numberOfAttendees, string contactEmail, bool needToRegister) : this()
+        public Event(string name, string description, string location, int numberOfAttendees, string contactEmail, bool needToRegister)
         {
             Name = name;
             Description = description;
